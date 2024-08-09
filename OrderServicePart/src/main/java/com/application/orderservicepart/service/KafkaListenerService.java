@@ -38,8 +38,8 @@ public class KafkaListenerService {
 //    }
 
 
-    @KafkaListener(topics = Utility.orderServiceCreateTopic, groupId = Utility.orderConsumerGrpId)
-    public void consumeCreateOrderTopics(ConsumerRecord<String, String> record) {
+    @KafkaListener(topics = Utility.newProductTopic, groupId = Utility.orderConsumerGrpId)
+    public void consumeNewProductTopic(ConsumerRecord<String, String> record) {
 
         String entityString = record.value();
         Product product = (Product) Utility.getObjectFromJson(entityString, Product.class);
@@ -49,11 +49,11 @@ public class KafkaListenerService {
         int partition = record.partition();
         String topic = record.topic();
 
-        log.info(String.format("HW:  offset -> %d, partition -> %d, topic -> %s, message -> %s", offset, partition, topic, product.toString()));
+        log.info("TopicName={} :  offset -> {}, partition -> {}, topic -> {}, message -> {}", Utility.newProductTopic, offset, partition, topic, product.toString());
     }
 
-    @KafkaListener(topics = Utility.orderServiceRollbackTopic, groupId = Utility.orderConsumerGrpId)
-    public void consumeOrderRollbackTopic(ConsumerRecord<String, OrderDetails> record, Acknowledgment acknowledgment) {
+    @KafkaListener(topics = Utility.reverseOrderTopic, groupId = Utility.orderConsumerGrpId)
+    public void consumeReverseOrderTopic(ConsumerRecord<String, OrderDetails> record, Acknowledgment acknowledgment) {
 
         OrderDetails entity = record.value();
         int opValue = 0;

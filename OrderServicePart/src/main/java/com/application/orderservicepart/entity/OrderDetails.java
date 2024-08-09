@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "order_details")
-public class OrderDetails {
+public class OrderDetails extends CommonFields{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

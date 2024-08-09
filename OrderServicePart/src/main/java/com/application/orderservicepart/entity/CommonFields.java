@@ -1,5 +1,8 @@
 package com.application.orderservicepart.entity;
 
+import com.application.orderservicepart.enums.CommonStatus;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -13,4 +16,6 @@ public class CommonFields {
     private LocalDateTime createdDT;
     private String createdByUsername;
     private Long createdBy;
+    @Enumerated(EnumType.STRING)
+    private CommonStatus status;
 }

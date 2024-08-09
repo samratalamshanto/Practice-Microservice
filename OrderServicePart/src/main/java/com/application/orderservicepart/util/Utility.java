@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class Utility {
+    public static final String  newProductTopic = "new-products";
+    public static final String reverseProductTopic = "reverse-products";
     public static final String  newOrderTopic = "new-orders";
     public static final String reverseOrderTopic = "reverse-orders";
     public static final String newPaymentTopic = "new-payments";

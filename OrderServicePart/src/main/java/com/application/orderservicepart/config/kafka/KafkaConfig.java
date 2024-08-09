@@ -9,6 +9,20 @@ import org.springframework.kafka.config.TopicBuilder;
 @Configuration
 public class KafkaConfig {
     @Bean
+    public NewTopic createProductsTopic() {
+        return TopicBuilder
+                .name(Utility.newProductTopic)
+                .build();
+    }
+
+    @Bean
+    public NewTopic rollbackProductsTopic() {
+        return TopicBuilder
+                .name(Utility.reverseProductTopic)
+                .build();
+    }
+
+    @Bean
     public NewTopic createOrderTopic() {
         return TopicBuilder
                 .name(Utility.newOrderTopic)
@@ -56,6 +70,5 @@ public class KafkaConfig {
                 .name(Utility.newNotificationTopic)
                 .build();
     }
-
 
 }
