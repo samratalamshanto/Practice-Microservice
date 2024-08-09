@@ -16,28 +16,6 @@ import org.springframework.stereotype.Service;
 public class KafkaListenerService {
     private final OrderService orderService;
 
-//    @KafkaListener(topics = Utility.orderServiceCreateTopic, groupId = Utility.orderConsumerGrpId)
-//    public void consumeCreateOrderTopics(ConsumerRecord<String, String> record, Acknowledgment acknowledgment) {
-//
-//        String entityString = record.value();
-//        Gson gson = new Gson();
-//        Product product = gson.fromJson(entityString, Product.class);
-//        boolean opValue;
-//
-//        opValue = orderService.processOrder(product);
-//
-//        if (opValue) {
-//            acknowledgment.acknowledge();
-//        }
-//
-//        long offset = record.offset();
-//        int partition = record.partition();
-//        String topic = record.topic();
-//
-//        log.info(String.format("HW:  offset -> %d, partition -> %d, topic -> %s, message -> %s", offset, partition, topic, product.toString()));
-//    }
-
-
     @KafkaListener(topics = Utility.newProductTopic, groupId = Utility.orderConsumerGrpId)
     public void consumeNewProductTopic(ConsumerRecord<String, String> record) {
 
@@ -70,6 +48,30 @@ public class KafkaListenerService {
 
         log.info(String.format("HW:  offset -> %d, partition -> %d, topic -> %s, message -> %s", offset, partition, topic, entity.toString()));
     }
-
-
 }
+
+
+
+
+
+//    @KafkaListener(topics = Utility.orderServiceCreateTopic, groupId = Utility.orderConsumerGrpId)
+//    public void consumeCreateOrderTopics(ConsumerRecord<String, String> record, Acknowledgment acknowledgment) {
+//
+//        String entityString = record.value();
+//        Gson gson = new Gson();
+//        Product product = gson.fromJson(entityString, Product.class);
+//        boolean opValue;
+//
+//        opValue = orderService.processOrder(product);
+//
+//        if (opValue) {
+//            acknowledgment.acknowledge();
+//        }
+//
+//        long offset = record.offset();
+//        int partition = record.partition();
+//        String topic = record.topic();
+//
+//        log.info(String.format("HW:  offset -> %d, partition -> %d, topic -> %s, message -> %s", offset, partition, topic, product.toString()));
+//    }
+
