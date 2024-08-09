@@ -1,4 +1,4 @@
-package com.application.notificationservicepart.util;
+package com.application.productservicepart.util;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;

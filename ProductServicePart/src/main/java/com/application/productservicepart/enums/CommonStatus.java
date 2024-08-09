@@ -1,4 +1,4 @@
-package com.application.notificationservicepart.enums;
+package com.application.productservicepart.enums;
 
 import lombok.Getter;
 

@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class ProductService {
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, Product> kafkaTemplate;
 
     public boolean addProduct(Product product) {
         try {
-            kafkaTemplate.send(Utility.orderServiceCreateTopic, Utility.getJsonString(product));
+            kafkaTemplate.send(Utility.newOrderTopic, product);
             return true;
         } catch (Exception e) {
             throw new RuntimeException(e);
