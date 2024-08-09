@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="NotificationServicePart" />
         <module name="OrderServicePart" />
         <module name="StockServicePart" />
         <module name="PaymentServicePart" />
@@ -16,6 +17,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="NotificationServicePart" options="-parameters" />
       <module name="OrderServicePart" options="-parameters" />
       <module name="PaymentServicePart" options="-parameters" />
       <module name="ProductServicePart" options="-parameters" />
