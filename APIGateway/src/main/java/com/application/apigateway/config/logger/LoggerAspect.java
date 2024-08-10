@@ -19,14 +19,14 @@ public class LoggerAspect {
         final Object[] args = joinPoint.getArgs();
 
         if (args.length > 0) {
-            log.info("Invoked.. {}::{}() and args={}", className, methodName, Utility.objectToJsonString(args));
+            log.info("Invoked.. {}::{}() and args={}", className, methodName, Utility.getJsonStringFromObject(args));
         } else {
             log.info("Invoked.. {}::{}()", className, methodName);
         }
         long start = System.currentTimeMillis();
         Object result = joinPoint.proceed();
         long timeMillis = System.currentTimeMillis() - start;
-        log.info("Complete[{}ms].. {}::{}() and Result={}", timeMillis, className, methodName, Utility.objectToJsonString(result));
+        log.info("Complete[{}ms].. {}::{}() and Result={}", timeMillis, className, methodName, Utility.getJsonStringFromObject(result));
         return result;
     }
 }

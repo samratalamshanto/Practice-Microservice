@@ -1,9 +1,14 @@
 package com.application.orderservicepart.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+
+import java.time.LocalDateTime;
 
 @Service
 @Slf4j
@@ -33,5 +38,24 @@ public class Utility {
             log.error(e.getMessage());
             return new Object();
         }
+    }
+
+    public static String getJsonStringFromObject(Object object) {
+        if (ObjectUtils.isEmpty(object)) {
+            return "null";
+        }
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.registerModule(new JavaTimeModule());
+            return mapper.writeValueAsString(object);
+        } catch (Exception e) {
+            return "null";
+        }
+    }
+
+
+    public static LocalDateTime getCurrentDT() {
+        LocalDateTime curDT = LocalDateTime.now();
+        return curDT;
     }
 }

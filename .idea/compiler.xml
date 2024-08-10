@@ -12,9 +12,11 @@
         <module name="OrderServicePart" />
         <module name="StockServicePart" />
         <module name="PaymentServicePart" />
-        <module name="ProductServicePart" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ProductServicePart" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

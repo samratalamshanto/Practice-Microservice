@@ -12,5 +12,6 @@ public enum CommonStatus {
     Accept,
     Reject,
     Pending,
-    TODO
+    TODO,
+    Created
 }

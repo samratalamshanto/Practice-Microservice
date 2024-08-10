@@ -1,6 +1,6 @@
 package com.application.orderservicepart.service;
 
-import com.application.orderservicepart.dto.Product;
+import com.application.orderservicepart.dto.order.OrderDto;
 import com.application.orderservicepart.entity.OrderDetails;
 import com.application.orderservicepart.util.Utility;
 import lombok.RequiredArgsConstructor;
@@ -16,18 +16,18 @@ import org.springframework.stereotype.Service;
 public class KafkaListenerService {
     private final OrderService orderService;
 
-    @KafkaListener(topics = Utility.newProductTopic, groupId = Utility.orderConsumerGrpId)
+    @KafkaListener(topics = Utility.newOrderTopic, groupId = Utility.orderConsumerGrpId)
     public void consumeNewProductTopic(ConsumerRecord<String, String> record) {
 
         String entityString = record.value();
-        Product product = (Product) Utility.getObjectFromJson(entityString, Product.class);
-        boolean opValue = orderService.processOrder(product);
+        OrderDto orderDto = (OrderDto) Utility.getObjectFromJson(entityString, OrderDto.class);
+        orderService.processOrder(orderDto);
 
         long offset = record.offset();
         int partition = record.partition();
         String topic = record.topic();
 
-        log.info("TopicName={} :  offset -> {}, partition -> {}, topic -> {}, message -> {}", Utility.newProductTopic, offset, partition, topic, product.toString());
+        log.info("TopicName={} :  offset -> {}, partition -> {}, , message -> {}", topic, offset, partition, Utility.getJsonStringFromObject(orderDto));
     }
 
     @KafkaListener(topics = Utility.reverseOrderTopic, groupId = Utility.orderConsumerGrpId)

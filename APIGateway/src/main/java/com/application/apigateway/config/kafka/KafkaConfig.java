@@ -1,6 +1,6 @@
-package com.application.orderservicepart.config.kafka;
+package com.application.apigateway.config.kafka;
 
-import com.application.orderservicepart.util.Utility;
+import com.application.apigateway.util.Utility;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
