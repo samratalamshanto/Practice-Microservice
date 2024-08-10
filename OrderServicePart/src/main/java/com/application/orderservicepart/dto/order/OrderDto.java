@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderDto {
+    private Long orderId;
     private String productId;
     private String productName;
     private double productPrice;

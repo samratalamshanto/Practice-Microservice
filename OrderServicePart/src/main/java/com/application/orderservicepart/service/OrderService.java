@@ -27,6 +27,7 @@ public class OrderService {
         order.setCreatedDT(LocalDateTime.now());
         try {
             order = orderRepo.save(order);
+            orderDto.setOrderId(order.getId());
             kafkaTemplate.send(Utility.newPaymentTopic, order);
             return true;
         } catch (Exception e) {

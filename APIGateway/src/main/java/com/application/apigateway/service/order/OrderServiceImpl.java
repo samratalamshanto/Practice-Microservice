@@ -29,8 +29,6 @@ public class OrderServiceImpl implements OrderService {
                 User createdUser = jwtUtilsService.getUserFromToken(request);
                 orderDto.setCreatedBy(createdUser.getId());
                 orderDto.setCreatedByUsername(createdUser.getUsername());
-//                orderDto.setCreatedDT(Utility.getCurrentDT());
-
                 kafkaTemplate.send(Utility.newOrderTopic, orderDto);
                 commonResponse = new CommonResponse(200, true, "Order created successfully", null);
                 return ResponseEntity.ok(commonResponse);
